@@ -1,10 +1,11 @@
 @font-face {
   font-family: Roboto-Regular;
-  src: url("../fonts/Roboto-Regular.ttf");
+  src: url('../fonts/Roboto-Regular.ttf');
 }
 
 :root {
   --white-transparent: rgba(240, 248, 255, 0.336);
+  --max-width: 1290px;
 }
 
 * {
@@ -12,11 +13,43 @@
 }
 
 body {
-  font-family: Roboto-Regular;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   color: #2b3033;
   background: #5fc7ea;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  body {
+    font-size: 1rem;
+  }
 }
 
 ul {
@@ -25,7 +58,7 @@ ul {
   margin: 0;
 }
 
-a[href="#1"] {
+a[href='#1'] {
   padding-left: 10px;
 }
 
@@ -108,7 +141,7 @@ a {
   background: white;
 }
 .burger__patty:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -10px;
   left: 0;
@@ -117,7 +150,7 @@ a {
   background: white;
 }
 .burger__patty:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 10px;
   left: 0;
@@ -154,18 +187,28 @@ a {
 
 /********************************************/
 .panel {
-  padding-left: 130px;
-  padding-right: 10px;
-  display: grid;
-  grid-template-columns: 1fr;
+  padding-left: 70px;
 }
 
 .panel__wrapper {
-  perspective: 1000px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  padding: 0 1rem;
+  gap: 1rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
+@media screen and (min-width: 576px) {
+  .panel__wrapper {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media screen and (min-width: 641px) {
+  .panel {
+    padding-left: 120px;
+  }
+}
+
 .panel__content {
   will-change: transform;
   transform: scale(0.7) rotateX(-230deg);
@@ -189,7 +232,6 @@ a {
 .panel__headline {
   text-align: center;
   font-weight: 700;
-  font-size: 48px;
   grid-column-end: span 1;
 }
 
@@ -198,18 +240,16 @@ article {
 }
 
 article::after {
-  content: "";
+  content: '';
   border: 0.1px solid #2b3033;
   width: 50%;
   display: block;
   margin: 5px auto;
 }
-.pagination {
-  grid-column-end: span 1;
-}
 
 .pagination__wrapper {
-  margin: 30px auto;
+  margin: 0 auto;
+  max-width: var(--max-width);
 }
 
 .overview {
@@ -221,13 +261,13 @@ article::after {
 }
 
 .poster {
-  width: 185px;
-  max-height: 264px;
+  width: 155px;
+  max-height: 220px;
   border-radius: 4px 0 0 4px;
 }
 
 .image__wrapper {
-  height: 264px;
+  max-height: 220px;
   display: flex;
   align-items: center;
   background: var(--white-transparent);
@@ -273,7 +313,7 @@ article::after {
 
 footer {
   text-align: center;
-  padding: 35px;
+  padding: 35px 0;
 }
 
 .panel footer p {
@@ -283,14 +323,23 @@ footer {
 /***************************************************/
 
 .serie {
-  padding: 20px 130px 0 130px;
+  padding: 10px 10px 0 80px;
+  /* max-width: var(--max-width); */
+  /* padding: 20px 130px 0 130px; */
   display: grid;
-  grid-template-columns: minmax(1000px, 1519px);
-  gap: 10px;
+  /* grid-template-columns: minmax(1000px, 1519px); */
+  gap: 1rem;
+}
+
+@media screen and (min-width: 641px) {
+  .serie {
+    grid-template-columns: 1fr;
+    padding: 10px 10px 0 130px;
+  }
 }
 
 .serie p {
-  font-size: 1.1em;
+  font-size: 1.1rem;
 }
 
 #serie_header {
@@ -301,13 +350,12 @@ footer {
 #serie_name {
   margin-bottom: 0;
   font-weight: 700;
-  font-size: 48px;
 }
 
 #original_name {
   margin: 0;
   line-height: initial;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 
 #serie_ratings {
@@ -331,7 +379,7 @@ footer {
   border-radius: 4px;
 }
 
-p#descubretv_logo{
+p#descubretv_logo {
   margin-bottom: 6px;
 }
 
@@ -369,7 +417,7 @@ p.ratings {
 }
 
 #valorar_btn {
-  /* width: 86px; */
+  width: 86px;
   padding: 3px 5px;
   transition: 0.5s;
   background-size: 200% auto;
@@ -414,9 +462,11 @@ p.ratings {
 }
 
 #serie_poster img {
-  width: 320px;
+  width: 100%;
+  display: block;
+  /* width: 320px;
   height: 100%;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px; */
 }
 
 iframe {
@@ -468,10 +518,11 @@ iframe {
 }
 #temporadas_wrapper {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: 231px;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
   white-space: nowrap;
   border-radius: 4px;
   background: var(--white-transparent);
@@ -491,7 +542,13 @@ iframe {
   padding: 10px;
 }
 #comentarios {
-  width: 60%;
+  width: 100%;
+}
+
+@media (min-width: 800px) {
+  #comentarios {
+    width: 60%;
+  }
 }
 
 #comentarios span {
